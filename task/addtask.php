@@ -1,3 +1,13 @@
+<?php
+session_start();
+// if (!isset($_SESSION['username'])) {
+//     header('Location: ../index.php');
+//     exit();
+// }
+$username = $_SESSION['username'];
+$department = $_SESSION['department'];
+?>
+
 <!doctype html>
 <html lang="nl">
 
@@ -15,19 +25,10 @@
 
             </div>
             <form action="../backend/task-controler.php" method="post">
-                <input type="hidden" name="addtask">
-                <div class="form-group">
-                    <label for="name">Wat is uw naam:</label>
-                    <input type="text" name="name" id="name" placeholder="Jhon Doe">
-                </div>
-                <div class="form-group">
-                    <label for="section">afdeling:</label>
-                    <select name="afdeling" id="afdeling">
-                        <option value="">kies een afdeling</option>
-                        <option value="techniek">techniek</option>
-                        <option value=""></option>
-                    </select>
-                </div>
+                <input type="hidden" name="action" value="addtask">
+                <input type="hidden" name="username" value="<?php $username?>">
+                <input type="hidden" name="department" value="<?php $department?>">
+                <input type="hidden" name="status" value="backlog">
                 <div class="form-group">
                     <label for="title">title van de taak:</label>
                     <input type="text" name="title" id="title">
@@ -36,7 +37,11 @@
                     <label for="description">beschrijving:</label>
                     <textarea name="description" id="description"></textarea>
                 </div>
-                <div class="form-group"></div>
+                <div class="form-group">
+                    <label for="deadline">Deadline:</label>
+                    <input type="date" name="deadline" id="deadline">
+                </div>
+
             </form>
         </div>
 
