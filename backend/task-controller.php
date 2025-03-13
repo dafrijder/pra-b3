@@ -7,18 +7,18 @@ if ($action == 'addtask') {
     $description = $_POST['description'];
     $deadline = $_POST['deadline'];
     $status = $_POST['status'];
-    $username = $_POST['username'];
+    $user = $_POST['username'];
     $department = $_POST['department'];
-    $query = "INSERT INTO tasks (title, description, deadline, status, username, department) VALUES (':title', ':description', ':deadline', ':status', ':username', ':department')";
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(':title', $title);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':deadline', $deadline);
-    $stmt->bindParam(':status', $status);
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':department', $department);
-    $stmt->execute();
-    header('Location: ../index.php');
-
+    $query = "INSERT INTO kanban (title, description, user, department, deadline, status) VALUES (:title, :description, :user, :department, :deadline, :status)";
+    $stmt = $conn->prepare($query); 
+    $stmt->execute([
+        ":title" => $title,
+        ":description" => $description,
+        ":user" => $user,
+        ":department" => $department,
+        ":deadline" => $deadline,
+        ":status" => $status
+    ]);
+    header('Location: ' . $base_url . '/task/index.php');
 }
 ?>

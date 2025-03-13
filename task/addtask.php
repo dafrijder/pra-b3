@@ -4,8 +4,10 @@ session_start();
 //     header('Location: ../index.php');
 //     exit();
 // }
-$username = $_SESSION['username'];
-$department = $_SESSION['department'];
+// $username = $_SESSION['username'];
+$username = "niels";
+// $department = $_SESSION['department'];
+$department = "testing";
 ?>
 
 <!doctype html>
@@ -24,10 +26,10 @@ $department = $_SESSION['department'];
                 <h1>Add a task</h1>
 
             </div>
-            <form action="../backend/task-controler.php" method="post">
+            <form action="../backend/task-controller.php" method="post">
                 <input type="hidden" name="action" value="addtask">
-                <input type="hidden" name="username" value="<?php $username?>">
-                <input type="hidden" name="department" value="<?php $department?>">
+                <input type="hidden" name="username" value="<?php echo $username; ?>">
+                <input type="hidden" name="department" value="<?php echo $department?>">
                 <input type="hidden" name="status" value="backlog">
                 <div class="form-group">
                     <label for="title">title van de taak:</label>
@@ -40,6 +42,9 @@ $department = $_SESSION['department'];
                 <div class="form-group">
                     <label for="deadline">Deadline:</label>
                     <input type="date" name="deadline" id="deadline">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add task">
                 </div>
 
             </form>
