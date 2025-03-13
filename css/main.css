@@ -10,12 +10,18 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+*{
+  margin: 0;
+  padding: 0;
+}
 
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
 }
+
+/* basic css */
 
 /*
  * Remove text-shadow in selection highlight:
