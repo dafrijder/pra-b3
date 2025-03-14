@@ -24,7 +24,7 @@ $department = "testing";
     <div class="container">
         <div class="addtask-container">
             <div class="addtask-info">
-                <h1>maak een taak aan</h1>
+                <h1>Maak een taak aan</h1>
                 <p>Vul de onderstaande velden in om een nieuwe taak toe te voegen aan het systeem. Geef een duidelijke titel en beschrijving zodat anderen begrijpen wat er gedaan moet worden. De taak wordt automatisch toegevoegd aan de backlog.</p>
                 <p>Huidige gebruiker: <strong><?php echo $username; ?></strong> | Afdeling: <strong><?php echo $department; ?></strong></p>
             </div>
@@ -34,11 +34,11 @@ $department = "testing";
                 <input type="hidden" name="department" value="<?php echo $department ?>">
                 <input type="hidden" name="status" value="backlog">
                 <div class="form-group">
-                    <label for="title">title van de taak:</label>
+                    <label for="title">Titel van de taak:</label>
                     <input type="text" name="title" id="title" class="form-input">
                 </div>
                 <div class="form-group">
-                    <label for="description">beschrijving:</label>
+                    <label for="description">Beschrijving:</label>
                     <textarea name="description" id="description"></textarea>
                 </div>
                 <div class="form-group">
