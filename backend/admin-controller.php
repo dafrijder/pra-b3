@@ -1,4 +1,5 @@
 <?php
+require_once 'conn.php';
 $action = $_POST['action'];
 var_dump($_POST);
 
@@ -20,28 +21,16 @@ if ($action == 'add-person') {
         $error = 'Afdeling is verplicht';
     }
 
-    if (isset($error)) {
-        $error = 'Er is een fout opgetreden';
-    } else {
-        $query = "INSERT INTO users (username, password, role, department) VALUES ('$username', '$password', '$role', '$department')";
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            $success = 'Gebruiker is toegevoegd';
-        } else {
-            $error = 'Er is een fout opgetreden';
-        }
-    }
+    $query = "INSERT INTO users (username, password, role, department) VALUES (:username, :password, :role, :department)";
+    $statement = $conn->prepare($query);
 
-    $statement = mysqli_prepare($conn, $query);
-    $item = $statement->fetchALL(PDO::FETCH_ASSOC);
 
     $statement->execute([
-        ": username" => $username,
-        ": password" => $password,
-        ": role" => $role,
-        ": department" => $department
+        ":username" => $username,
+        ":password" => $password,
+        ":role" => $role,
+        ":department" => $department
     ]);
 
     header('Location: ' . $base_url . '/admin.php');
 }
-?>
