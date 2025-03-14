@@ -10,7 +10,7 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -22,7 +22,7 @@ html {
 }
 
 /* basic css */
-
+.
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -93,28 +93,82 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-html{
-    font-size: 16px;
+html {
+  font-size: 16px;
 }
 
-.container{
-    max-width: 1024px;
-    margin: 0 auto;
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: whitesmoke;
 }
 
-.form-group{
-    margin: 1rem 0;
+button,
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #24b308;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
 }
 
-label{
-    cursor: pointer;
-    display: inline-block;
-    min-width: 140px;
-    vertical-align: top;
+button:hover,
+input[type="submit"]:hover {
+  background-color: #1c8f06;
+  scale: 1.05;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.form-input{
-    width: 600px;
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+textarea {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  width: 25%;
+  transition: 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid #24b308;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+label {
+  cursor: pointer;
+  display: inline-block;
+  min-width: 140px;
+  vertical-align: top;
+}
+
+.form-input {
+  width: 600px;
+  height: 30px;
+  padding: 0 10px;
 }
 
 
@@ -213,9 +267,9 @@ label{
 }
 
 @media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */
 }
 
@@ -226,6 +280,7 @@ label{
    ========================================================================== */
 
 @media print {
+
   *,
   *::before,
   *::after {
@@ -293,4 +348,3 @@ label{
     page-break-after: avoid;
   }
 }
-
