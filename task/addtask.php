@@ -34,7 +34,7 @@ $department = "testing";
                 <input type="hidden" name="status" value="backlog">
                 <div class="form-group">
                     <label for="title">title van de taak:</label>
-                    <input type="text" name="title" id="title">
+                    <input type="text" name="title" id="title" class="form-input">
                 </div>
                 <div class="form-group">
                     <label for="description">beschrijving:</label>
@@ -42,7 +42,7 @@ $department = "testing";
                 </div>
                 <div class="form-group">
                     <label for="deadline">Deadline:</label>
-                    <input type="date" name="deadline" id="deadline">
+                    <input type="date" name="deadline" id="deadline" class="form-input">
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Add task">

@@ -2,7 +2,8 @@
 require_once 'conn.php';
 $action = $_POST['action'];
 
-if ($action == 'addtask') {
+if ($action == 'addtask') 
+{
     $title = $_POST['title'];
     $description = $_POST['description'];
     $deadline = $_POST['deadline'];
