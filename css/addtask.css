@@ -1,4 +1,11 @@
-*{
-    margin: 0;
-    padding: 0;
+.addtask-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px;
+}
+
+.addtask-info{
+    margin-bottom: 20px;
+    text-align: center;
 }
