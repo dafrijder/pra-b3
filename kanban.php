@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="css/kanban.css">
 </head>
 <header>
-    <?php require_once "header.php"?>
+    <?php //require_once "header.php"?>
 </header>
 <body>
     <main>
-        <img src="" alt="logo">
-        <div class="">
-            <h1>Kanban</h1>
+        <div class="titlebox">
+            <div class="title">
+                <img src="" alt="logo">
+                <h1>Kanban</h1>
+            </div>
         </div>
         <div class='navbar'>
 
@@ -42,6 +44,6 @@
     </main>
 </body>
 <footer>
-    <?php require_once "footer.php"?>
+    <?php //require_once "footer.php"?>
 </footer>
 </html>
