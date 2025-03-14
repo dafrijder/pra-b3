@@ -8,7 +8,7 @@ if ($action == 'add-person') {
     if (empty($username)) {
         $error = 'Gebruikersnaam is verplicht';
     }
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     if (empty($password)) {
         $error = 'Wachtwoord is verplicht';
     }

@@ -11,6 +11,31 @@
 <body>
     <div class="container">
         <h1>Administratie</h1>
+
+        <?php
+        require_once '../backend/conn.php';
+        $querry = "SELECT * FROM users";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $users = $statement->fetchAll();
+        ?>
+
+        <table>
+            <tr>
+                <th>Gebruikersnaam</th>
+                <th>Functie</th>
+                <th>Afdeling</th>
+            </tr>
+            <?php foreach ($users as $user); ?>
+            <tr>
+                <td><?php echo $user['username']; ?></td>
+                <td><?php echo $user['role']; ?></td>
+                <td><?php echo $user['department']; ?></td>
+                <td><a href="">Aanpassen</a></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+
         <div class="">
             <form action="<?php echo $base_url; ?>/backend/admin-controller.php" method="post">
                 <input type="hidden" name="action" value="add-person">
