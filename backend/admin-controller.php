@@ -38,3 +38,19 @@ if ($action == 'add-person') {
 if ($action == "update-person") {
     $id = $_POST['id'];
 }
+if ($action == 'login') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $query = "SELECT * FROM users WHERE username = :username";
+    $statement = $conn->prepare($query);
+    $statement->execute([
+        ":username" => $username
+    ]);
+    $user = $statement->fetch();
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user'] = $user;
+        header('Location: ' . $base_url . '/task/index.php');
+    } else {
+        $error = 'Gebruikersnaam of wachtwoord is onjuist';
+    }
+}
