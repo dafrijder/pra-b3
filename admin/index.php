@@ -14,7 +14,7 @@
 
         <?php
         require_once '../backend/conn.php';
-        $querry = "SELECT * FROM users";
+        $query = "SELECT * FROM users";
         $statement = $conn->prepare($query);
         $statement->execute();
         $users = $statement->fetchAll();

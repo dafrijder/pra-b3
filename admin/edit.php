@@ -10,7 +10,7 @@
     <h1>Gebruiker aanpassen</h1>
 
     <form action="<?php echo $base_url; ?>/backend/admin-controller.php" method="post">
-        <imput type = "hidden">
+        <imput type = "hidden" name = "action" value = "update-person">
     </form>
 </body>
 </html>
