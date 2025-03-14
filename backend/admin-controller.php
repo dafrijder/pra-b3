@@ -32,5 +32,9 @@ if ($action == 'add-person') {
         ":department" => $department
     ]);
 
-    header('Location: ' . $base_url . '/admin.php');
+    header('Location: ' . $base_url . '/admin/index.php');
+}
+
+if ($action == "update-person") {
+    $id = $_POST['id'];
 }
