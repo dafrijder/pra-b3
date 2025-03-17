@@ -21,18 +21,20 @@
         ?>
 
         <table>
+            <h2>Gebruikers</h2>
             <tr>
                 <th>Gebruikersnaam</th>
                 <th>Functie</th>
                 <th>Afdeling</th>
             </tr>
             <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?php echo $user['username']; ?></td>
-                <td><?php echo $user['role']; ?></td>
-                <td><?php echo $user['department']; ?></td>
-                <td><a href="">Aanpassen</a></td>
-            </tr>
+                <tr>
+                    <td><?php echo $user['username']; ?></td>
+                    <td><?php echo $user['role']; ?></td>
+                    <td><?php echo $user['department']; ?></td>
+                    <td><a href="edit.php?id=<?php echo $user["id"] ?>">Aanpassen</a></td>
+
+                </tr>
             <?php endforeach; ?>
         </table>
 
