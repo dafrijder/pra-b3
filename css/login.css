@@ -1,0 +1,46 @@
+.login-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.login-container::after {
+    content: "";
+    background-image: url(../img/logo-big-v4.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.login-info{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-goup {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+}
+
+.form-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-form {
+    position: relative;
+    z-index: 2;
+}

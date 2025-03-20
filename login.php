@@ -4,6 +4,7 @@
 <head>
     <title></title>
     <?php require_once 'head.php'; ?>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
