@@ -42,7 +42,35 @@ if ($action == "update-person") {
     }
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     if (empty($password)) {
-        $error =
+        $error = 'Wachtwoord is verplicht';
+    }
+    $role = $_POST['role'];
+    if (empty($role)) {
+        $error = 'Functie is verplicht';
+    }
+    $department = $_POST['department'];
+    if (empty($department)) {
+        $error = 'Afdeling is verplicht';
+    }
+    $query = "UPDATE users SET username = :username, password = :password, role = :role, department = :department WHERE id = :id";
+    $statement = $conn->prepare($query);
+    $statement->execute([
+        ":username" => $username,
+        ":password" => $password,
+        ":role" => $role,
+        ":department" => $department,
+        ":id" => $id
+    ]);
+    header('Location: ' . $base_url . '/admin/index.php');
+}
+if ($action == 'delete-person') {
+    $id = $_POST['id'];
+    $query = "DELETE FROM users WHERE id = :id";
+    $statement = $conn->prepare($query);
+    $statement->execute([
+        ":id" => $id
+    ]);
+    header('Location: ' . $base_url . '/admin/index.php');
 }
 if ($action == 'login') {
     $username = $_POST['username'];
