@@ -5,7 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/css/admin.css">
     <?php require_once '../head.php'; ?>
+    <style>
+        td
+        .edit {
+            background-color: blue;
+            color: white;
+            padding: 14px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        td .edit:hover,
+        a:active {
+            background-color: blue;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,7 +49,8 @@
                     <td><?php echo $user['username']; ?></td>
                     <td><?php echo $user['role']; ?></td>
                     <td><?php echo $user['department']; ?></td>
-                    <td><a href="edit.php?id=<?php echo $user["id"] ?>">Aanpassen</a></td>
+                    <td><a class='edit' href="edit.php?id=<?php echo $user["id"] ?>"><i class="fa-solid fa-pencil"></i></a></td>
+                    <td><a class='delete' href=""><i class="fa-solid fa-trash-can"></i></a></td>
 
                 </tr>
             <?php endforeach; ?>
