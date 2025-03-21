@@ -46,6 +46,7 @@ $user = $statement->fetch();
                     <label for="department">Afdeling:</label>
                     <imput type="text" name="department" id="department" class="form-input" value="<?php echo $user['department']; ?>">
                 </div>
+                
     </form>
 </body>
 

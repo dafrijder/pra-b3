@@ -8,19 +8,39 @@
     <link rel="stylesheet" href="<?php echo $base_url; ?>/css/admin.css">
     <?php require_once '../head.php'; ?>
     <style>
-        td
-        .edit {
-            background-color: blue;
+        td .edit {
+            background-color: #24b308;
             color: white;
-            padding: 14px;
+            border: none;
+            padding: 12px;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.2s ease-in-out;
+            height: 40px;
+        }
+
+        td .edit:hover,
+        .edit:active {
+            background-color: #1c8f06;
+            scale: 1.05;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        td .delete {
+            background-color:rgb(36, 95, 189);
+            color: white;
+            padding: 12px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
         }
 
-        td .edit:hover,
-        a:active {
-            background-color: blue;
+        td .delete:hover,
+        .delete:active {
+            background-color:rgb(17, 71, 158) ;
+            scale: 1.05;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -50,7 +70,7 @@
                     <td><?php echo $user['role']; ?></td>
                     <td><?php echo $user['department']; ?></td>
                     <td><a class='edit' href="edit.php?id=<?php echo $user["id"] ?>"><i class="fa-solid fa-pencil"></i></a></td>
-                    <td><a class='delete' href=""><i class="fa-solid fa-trash-can"></i></a></td>
+                    <td><button class='delete' href=""><i class="fa-solid fa-trash-can"></i></button></td>
 
                 </tr>
             <?php endforeach; ?>
