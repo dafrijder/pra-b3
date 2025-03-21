@@ -1,7 +1,6 @@
 <?php
 require_once 'conn.php';
 $action = $_POST['action'];
-var_dump($_POST);
 
 if ($action == 'add-person') {
     $username = $_POST['username'];
@@ -37,6 +36,13 @@ if ($action == 'add-person') {
 
 if ($action == "update-person") {
     $id = $_POST['id'];
+    $username = $_POST['username'];
+    if (empty($username)) {
+        $error = 'Gebruikersnaam is verplicht';
+    }
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if (empty($password)) {
+        $error =
 }
 if ($action == 'login') {
     $username = $_POST['username'];
