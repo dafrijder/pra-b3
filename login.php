@@ -47,5 +47,5 @@
         password.type = 'password';
     }
 </script>
-
+<?php require_once 'templates/footer.php'; ?>
 </html>

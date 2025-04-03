@@ -9,7 +9,7 @@
 
     session_start();
     if (isset($_SESSION['user'])) {
-        header("Location: ./index.php");
+        header($base_url);
         exit;
     }
     ?>
@@ -58,5 +58,5 @@ $user = $statement->fetch();
                 </div>
     </form>
 </body>
-
+<?php require_once './templates/footer.php'; ?>
 </html>
