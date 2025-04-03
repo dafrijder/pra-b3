@@ -1,14 +1,13 @@
 <?php
-
-session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: " . $base_url . "/login.php");
-    exit;
-}
 require_once 'conn.php';
 $action = $_POST['action'];
 
 if ($action == 'add-person') {
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header("Location: " . $base_url . "/login.php");
+        exit;
+    }
     $username = $_POST['username'];
     if (empty($username)) {
         $error = 'Gebruikersnaam is verplicht';
@@ -41,6 +40,11 @@ if ($action == 'add-person') {
 }
 
 if ($action == "update-person") {
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header("Location: " . $base_url . "/login.php");
+        exit;
+    }
     $id = $_POST['id'];
     $username = $_POST['username'];
     if (empty($username)) {
@@ -70,6 +74,11 @@ if ($action == "update-person") {
     header('Location: ' . $base_url . '/admin/index.php');
 }
 if ($action == 'delete-person') {
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header("Location: " . $base_url . "/login.php");
+        exit;
+    }
     $id = $_POST['id'];
     $query = "DELETE FROM users WHERE id = :id";
     $statement = $conn->prepare($query);
@@ -89,9 +98,9 @@ if ($action == 'login') {
     $user = $statement->fetch();
     if ($user && password_verify($password, $user['password'])) {
         session_start();
-        $_SESSION['user'] = $user['username'];	
+        $_SESSION['user'] = $user;
 
-        header('Location: ' . $base_url . '/task/index.php');
+        header('Location: ' . $base_url . '/index.php');
     } else {
         $error = 'Gebruikersnaam of wachtwoord is onjuist';
     }

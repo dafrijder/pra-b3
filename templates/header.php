@@ -16,10 +16,10 @@
                 <a href="<?php $base_url?>/login.php">Login</a>
             <?php endif; ?>
         </div>
+        <?php if (isset($_SESSION['user'])) : ?>
         <div class="user">
-            <p>Welkom <?php 
-            echo $_SESSION['user'];
-            ?></p>
+            <p>Welkom <?php echo $_SESSION['user'];?></p>
         </div>
+        <?php endif; ?>
     </nav>
 </header>
