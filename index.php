@@ -5,8 +5,8 @@
     <title>Home</title>
     <?php
     require_once 'head.php';
-    require_once 'header.php';
-
+    require_once 'templates/header.php';
+    
     session_start();
     ?>
 
@@ -21,5 +21,5 @@
     </div>
 
 </body>
-
+<?php require_once 'templates/footer.php'; ?>
 </html>
