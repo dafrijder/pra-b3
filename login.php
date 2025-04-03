@@ -10,6 +10,7 @@
 <body>
 
     <div class="container">
+        <?php require_once 'templates/header.php'; ?>
         <div class="login-container">
             <div class="login-info">
                 <h1>Login</h1>
@@ -37,5 +38,14 @@
     </div>
 
 </body>
+<script>
+    password = document.getElementById('password');
+    password.onfocus = function() {
+        password.type = 'text';
+    }
+    password.onblur = function() {
+        password.type = 'password';
+    }
+</script>
 
 </html>
