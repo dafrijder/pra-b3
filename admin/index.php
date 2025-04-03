@@ -10,7 +10,7 @@
 
     session_start();
     if (isset($_SESSION['user'])) {
-        header("Location: ./index.php");
+        header($base_url);
         exit;
     }
     ?>
@@ -199,5 +199,5 @@
         }
     });
 </script>
-
+<?php require_once './templates/footer.php'; ?>
 </html>

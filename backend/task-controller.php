@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['user'])) {
-    header("Location: ./index.php");
+    header($base_url);
     exit;
 }
 require_once 'conn.php';
