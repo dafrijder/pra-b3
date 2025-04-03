@@ -98,7 +98,7 @@ if ($action == 'login') {
     $user = $statement->fetch();
     if ($user && password_verify($password, $user['password'])) {
         session_start();
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $user['username'];
 
         header('Location: ' . $base_url . '/index.php');
     } else {
