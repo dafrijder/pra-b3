@@ -6,7 +6,12 @@
         <div class="navlinks">
             <a href="<?php $base_url?>/index.php">home</a>
             <a href="<?php $base_url?>/kanban.php">kanban</a>
-            <a href="<?php $base_url?>/login.php">login</a>
+            <a href="<?php $base_url?>task/index.php">tasks</a>
+            <?php if (isset($_SESSION['user'])) : ?>
+                <a href="<?php $base_url?>/logout.php">Logout</a>
+            <?php else : ?>
+                <a href="<?php $base_url?>/login.php">Login</a>
+            <?php endif; ?>
         </div>
     </nav>
 </header>
