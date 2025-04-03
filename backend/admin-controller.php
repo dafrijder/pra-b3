@@ -88,7 +88,9 @@ if ($action == 'login') {
     ]);
     $user = $statement->fetch();
     if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user'] = $user;
+        session_start();
+        $_SESSION['user'] = $user['username'];	
+
         header('Location: ' . $base_url . '/task/index.php');
     } else {
         $error = 'Gebruikersnaam of wachtwoord is onjuist';
