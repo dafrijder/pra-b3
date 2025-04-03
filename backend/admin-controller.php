@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-if (isset($_SESSION['user'])) {
-    header($base_url);
+if (!isset($_SESSION['user'])) {
+    header("Location: " . $base_url . "/login.php");
     exit;
 }
 require_once 'conn.php';
