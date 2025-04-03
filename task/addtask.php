@@ -1,13 +1,9 @@
 <?php
-session_abort()
+session_start();
 if (!isset($_SESSION['user'])) {
     header("Location: " . $base_url . "/login.php");
     exit;
 }
-// $username = $_SESSION['username'];
-$username = "niels";
-// $department = $_SESSION['department'];
-$department = "testing";
 ?>
 
 <!doctype html>

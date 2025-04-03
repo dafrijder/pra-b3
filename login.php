@@ -24,7 +24,10 @@
                 </div>
                 <div class="form-goup">
                     <label for="password">Wachtwoord:</label>
-                    <input type="password" name="password" id="password">
+                    <div class="password">
+                        <input type="password" name="password" id="password">
+                        <button id="hidepassword" type="button"><i class="fa-solid fa-eye"></i></button>
+                    </div>
                 </div>
                 <div class="form-goup">
                     <input type="submit" value="Login">
@@ -39,13 +42,18 @@
 
 </body>
 <script>
-    password = document.getElementById('password');
-    password.onfocus = function() {
-        password.type = 'text';
-    }
-    password.onblur = function() {
-        password.type = 'password';
-    }
+    const hidePasswordButton = document.getElementById('hidepassword');
+    const passwordInput = document.getElementById('password');
+
+    hidePasswordButton.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            hidePasswordButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+            passwordInput.type = 'password';
+            hidePasswordButton.innerHTML = '<i class="fas fa-eye"></i>';
+        }
+    });
 </script>
 <?php require_once 'templates/footer.php'; ?>
 </html>
