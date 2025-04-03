@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="<?php echo $base_url; ?>/css/admin.css">
-    <?php require_once '../head.php'; ?>
+    <?php require_once '../head.php';
+
+    session_start();
+    if (isset($_SESSION['user'])) {
+        header("Location: ./index.php");
+        exit;
+    }
+    ?>
     <style>
         td .edit {
             background-color: #24b308;
@@ -60,6 +67,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
         }
+
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -69,12 +77,14 @@
             max-width: 500px;
             border-radius: 5px;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: black;
@@ -144,7 +154,7 @@
                 <input type="submit" value="Toevoegen">
             </form>
         </div>
-        
+
         <!-- Modal for delete confirmation -->
         <div class="modal" id="deleteModal">
             <div class="modal-content">
@@ -172,7 +182,7 @@
         button.addEventListener('click', () => {
             const id = button.getAttribute('data-id');
             const username = button.getAttribute('data-username');
-            
+
             deleteUserId.value = id;
             deleteUsername.textContent = username;
             modal.style.display = 'block';
