@@ -3,6 +3,7 @@
 
 <head>
     <title>Home</title>
+    <link rel="stylesheet" href="css/home.css">
     <?php
     require_once 'head.php';
     require_once 'templates/header.php';
@@ -14,9 +15,9 @@
 <body>
 
     <div class="container">
-        <h1>Welkom!</h1>
         <img src="./img//logo-big-fill-only.png" alt="Logo">
-
+        <h1>Welkom!</h1>
+        
     </div>
 
 </body>

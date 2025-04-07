@@ -116,7 +116,7 @@
             <?php foreach ($users as $user): ?>
                 <tr>
                     <td><?php echo $user['username']; ?></td>
-                    <td><?php echo $user['role']; ?></td>
+                    <td><?php echo $user['role']; ?></td> 
                     <td><?php echo $user['department']; ?></td>
                     <td><a class='edit' href="edit.php?id=<?php echo $user["id"] ?>"><i class="fa-solid fa-pencil"></i></a></td>
                     <td><button class='delete' data-id="<?php echo $user["id"] ?>" data-username="<?php echo $user["username"] ?>"><i class="fa-solid fa-trash-can"></i></button></td>
