@@ -10,6 +10,11 @@
             <a href="<?php $base_url?>/index.php">home</a>
             <a href="<?php $base_url?>/kanban.php">kanban</a>
             <a href="<?php $base_url?>/task/index.php">tasks</a>
+            <!-- check if user is admin -->
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
+                <a href="<?php echo $base_url; ?>/admin/index.php">Admin Panel</a>
+            <?php endif; ?>
+            <!-- check if user loged in -->
             <?php if (isset($_SESSION['user'])) : ?>
                 <a href="<?php $base_url?>/logout.php">Logout</a>
             <?php else : ?>

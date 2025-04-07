@@ -99,6 +99,7 @@ if ($action == 'login') {
     if ($user && password_verify($password, $user['password'])) {
         session_start();
         $_SESSION['user'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
 
         header('Location: ' . $base_url . '/index.php');
     } else {
