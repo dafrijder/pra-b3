@@ -4,6 +4,8 @@
     width: 90%;
     margin: 0 auto;
     background-color: #d4d6d4;
+    overflow: scroll;
+
 }
 
 .colum-header{
