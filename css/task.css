@@ -1,0 +1,99 @@
+.kanban{
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    height: 80vh;
+    margin: 0 auto;
+    background-color: #d4d6d4;
+    overflow-x: auto; 
+    overflow-y: hidden; 
+}
+
+
+.backlog, .doing, .done {
+    flex: 1;
+    min-width: 300px; 
+    max-width: 33%;
+    height: 100%;
+    overflow-y: auto; 
+    padding: 0 10px;
+}
+
+.colum-header{
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #d4d6d4;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.task-item{
+    width: 75%;
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    list-style: none;
+}
+
+.task-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: calc(100% - 50px);
+}
+
+
+/* Modal styles */
+.model {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.model-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-task-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.edit-task-btn:hover {
+    background-color: #45a049;
+}
+
