@@ -37,6 +37,10 @@ $tasks = $statement->fetchAll();
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
+                                    <button class="edit-task-btn" 
+                                            data-id="<?php echo $task['id']; ?>" 
+                                            data-status="<?php echo $task['status']; ?>"
+                                            data-title="<?php echo $task['title']; ?>">Wijzig status</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -57,6 +61,10 @@ $tasks = $statement->fetchAll();
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
+                                    <button class="edit-task-btn" 
+                                            data-id="<?php echo $task['id']; ?>" 
+                                            data-status="<?php echo $task['status']; ?>"
+                                            data-title="<?php echo $task['title']; ?>">Wijzig status</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -77,6 +85,10 @@ $tasks = $statement->fetchAll();
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
+                                    <button class="edit-task-btn" 
+                                            data-id="<?php echo $task['id']; ?>" 
+                                            data-status="<?php echo $task['status']; ?>"
+                                            data-title="<?php echo $task['title']; ?>">Wijzig status</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -86,6 +98,84 @@ $tasks = $statement->fetchAll();
         </div>
     </div>
 
+    <div class="model" id="taskModal">
+        <div class="model-content">
+            <span class="close">&times;</span>
+            <h2>Edit task status</h2>
+            <div class="task-title-display">
+                <strong>Taak: </strong><span id="modal-task-title"></span>
+            </div>
+            <form action="../backend/task-controller.php" method="post">
+                <input type="hidden" name="action" value="updatestatus">
+                <input type="hidden" name="task_id" id="task_id">
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select name="status" id="status">
+                        <option value="backlog">backlog</option>
+                        <option value="doing">doing</option>
+                        <option value="done">done</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="save">
+                </div>
+            </form>
+        </div>  
+    </div>
+
+    <script>
+        // Get the modal
+        const modal = document.getElementById('taskModal');
+        
+        // Get the <span> element that closes the modal
+        const closeBtn = document.querySelector('.close');
+        
+        // Get all edit buttons
+        const editButtons = document.querySelectorAll('.edit-task-btn');
+        
+        // Get the task_id input field
+        const taskIdInput = document.getElementById('task_id');
+        
+        // Get the status select field
+        const statusSelect = document.getElementById('status');
+        
+        // Get the task title display element
+        const taskTitleDisplay = document.getElementById('modal-task-title');
+        
+        // Add click event to all edit buttons
+        editButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Get the task ID, current status, and title from data attributes
+                const taskId = button.getAttribute('data-id');
+                const currentStatus = button.getAttribute('data-status');
+                const taskTitle = button.getAttribute('data-title');
+                
+                // Set the task ID in the form
+                taskIdInput.value = taskId;
+                
+                // Set the current status in the dropdown
+                statusSelect.value = currentStatus;
+                
+                // Display the task title in the modal
+                taskTitleDisplay.textContent = taskTitle;
+                
+                // Display the modal
+                modal.style.display = 'block';
+            });
+        });
+        
+        // Close the modal when clicking on <span> (x)
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Close the modal when clicking anywhere outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
