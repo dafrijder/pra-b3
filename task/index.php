@@ -22,24 +22,70 @@ $tasks = $statement->fetchAll();
 <body>
 
     <div class="container">
-        <table>
-            <tr>
-                <th>Todo</th>
-                <th>Doing</th>
-                <th>Done</th>
-            </tr>
-            <?php foreach ($tasks as $task) :?>
-                <tr>
-                    <td><h3><?php echo $task['title'] ?></h3></td>
-                    <td><p><?php echo $task['description'] ?></p></td>
-                    <td><?php echo $task['deparment'] ?></td>
-                    <td><?php echo $task['status'] ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-
+        <div class="kanban">
+            <div class="backlog">
+                <div class="colum-header">
+                    <h2>backlog</h2>
+                </div>
+                <ul class="task-list">
+                    <?php foreach ($tasks as $task) : ?>
+                        <?php if ($task['status'] == 'backlog') : ?>
+                            <li class="task-item">
+                                <div class="task-info">
+                                    <h3><?php echo $task['title']; ?></h3>
+                                    <p><?php echo $task['description']; ?></p>
+                                    <p>Deadline: <?php echo $task['deadline']; ?></p>
+                                    <p>Start datum: <?php echo $task['date']; ?></p>
+                                    <p>Afdeling: <?php echo $task['department']; ?></p>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="doing">
+                <div class="colum-header">
+                    <h2>doing</h2>
+                </div>
+                <ul class="task-list">
+                    <?php foreach ($tasks as $task) : ?>
+                        <?php if ($task['status'] == 'doing') : ?>
+                            <li class="task-item">
+                                <div class="task-info">
+                                    <h3><?php echo $task['title']; ?></h3>
+                                    <p><?php echo $task['description']; ?></p>
+                                    <p>Deadline: <?php echo $task['deadline']; ?></p>
+                                    <p>Start datum: <?php echo $task['date']; ?></p>
+                                    <p>Afdeling: <?php echo $task['department']; ?></p>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="done">
+                <div class="colum-header">
+                    <h2>done</h2>
+                </div>
+                <ul class="task-list">
+                    <?php foreach ($tasks as $task) : ?>
+                        <?php if ($task['status'] == 'done') : ?>
+                            <li class="task-item">
+                                <div class="task-info">
+                                    <h3><?php echo $task['title']; ?></h3>
+                                    <p><?php echo $task['description']; ?></p>
+                                    <p>Deadline: <?php echo $task['deadline']; ?></p>
+                                    <p>Start datum: <?php echo $task['date']; ?></p>
+                                    <p>Afdeling: <?php echo $task['department']; ?></p>
+                                </div>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </body>
 
-</html> 
+</html>
