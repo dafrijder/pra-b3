@@ -100,6 +100,7 @@ if ($action == 'login') {
         session_start();
         $_SESSION['user'] = $user['username'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['department'] = $user['department'];
 
         header('Location: ' . $base_url . '/index.php');
     } else {

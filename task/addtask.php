@@ -4,6 +4,8 @@ if (!isset($_SESSION['user'])) {
     header("Location: " . $base_url . "/login.php");
     exit;
 }
+$username = $_SESSION['user'];
+$department = $_SESSION['department'];
 ?>
 
 <!doctype html>
