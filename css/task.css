@@ -1,7 +1,29 @@
 .kanban{
     display: flex;
     justify-content: space-around;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #d4d6d4;
 }
+
+.colum-header{
+    text-align: center;
+}
+.task-item{
+    width: 75%;
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    list-style: none;
+}
+
+.task-list{
+    display: flex;
+    allign-items: center;
+}
+
 
 /* Modal styles */
 .model {

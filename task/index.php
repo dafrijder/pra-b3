@@ -8,7 +8,7 @@
     require_once '../head.php';
     require_once '../templates/header.php';
     if (!isset($_SESSION['user'])) {
-        header("Location: " . $base_url . "/index.php");
+        header("Location: " . $base_url . "/index.php");    
     }
     ?>
 </head>
