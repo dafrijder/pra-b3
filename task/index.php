@@ -3,6 +3,7 @@
 
 <head>
     <title></title>
+    <link rel="stylesheet" href="../css/task.css">
     <?php
     require_once '../head.php';
     require_once '../templates/header.php';

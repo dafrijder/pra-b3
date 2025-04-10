@@ -1,0 +1,4 @@
+.kanban{
+    display: flex;
+    justify-content: space-around;
+}
