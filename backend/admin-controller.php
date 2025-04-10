@@ -107,3 +107,4 @@ if ($action == 'login') {
         $error = 'Gebruikersnaam of wachtwoord is onjuist';
     }
 }
+
