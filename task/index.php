@@ -8,7 +8,7 @@
     require_once '../head.php';
     require_once '../templates/header.php';
     if (!isset($_SESSION['user'])) {
-        header("Location: " . $base_url . "/index.php");    
+        header("Location: " . $base_url . "/index.php");
     }
     ?>
 </head>
@@ -38,10 +38,10 @@ $tasks = $statement->fetchAll();
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
-                                    <button class="edit-task-btn" 
-                                            data-id="<?php echo $task['id']; ?>" 
-                                            data-status="<?php echo $task['status']; ?>"
-                                            data-title="<?php echo $task['title']; ?>">Wijzig status</button>
+                                    <button class="edit-task-btn"
+                                        data-id="<?php echo $task['id']; ?>"
+                                        data-status="<?php echo $task['status']; ?>"
+                                        data-title="<?php echo $task['title']; ?>">Wijzig status</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -62,10 +62,10 @@ $tasks = $statement->fetchAll();
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
-                                    <button class="edit-task-btn" 
-                                            data-id="<?php echo $task['id']; ?>" 
-                                            data-status="<?php echo $task['status']; ?>"
-                                            data-title="<?php echo $task['title']; ?>">Wijzig status</button>
+                                    <button class="edit-task-btn"
+                                        data-id="<?php echo $task['id']; ?>"
+                                        data-status="<?php echo $task['status']; ?>"
+                                        data-title="<?php echo $task['title']; ?>">Wijzig status</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -86,10 +86,10 @@ $tasks = $statement->fetchAll();
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
-                                    <button class="edit-task-btn" 
-                                            data-id="<?php echo $task['id']; ?>" 
-                                            data-status="<?php echo $task['status']; ?>"
-                                            data-title="<?php echo $task['title']; ?>">Wijzig status</button>
+                                    <button class="edit-task-btn"
+                                        data-id="<?php echo $task['id']; ?>"
+                                        data-status="<?php echo $task['status']; ?>"
+                                        data-title="<?php echo $task['title']; ?>">Wijzig status</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -99,6 +99,7 @@ $tasks = $statement->fetchAll();
         </div>
     </div>
 
+    <!-- In the modal section, update the delete form to correctly pass the task ID -->
     <div class="model" id="taskModal">
         <div class="model-content">
             <span class="close">&times;</span>
@@ -118,31 +119,41 @@ $tasks = $statement->fetchAll();
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="save">
+                    <input type="submit" value="Save" class="btn btn-primary">
                 </div>
             </form>
-        </div>  
+
+            <form action="../backend/task-controller.php" method="post" onsubmit="return confirm('Weet je zeker dat je deze taak wilt verwijderen?');">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="task_id" id="delete_task_id">
+                <div class="form-group">
+                    <input type="submit" value="Delete Task" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
     </div>
+
 
     <script>
         // Get the modal
         const modal = document.getElementById('taskModal');
-        
+
         // Get the <span> element that closes the modal
         const closeBtn = document.querySelector('.close');
-        
+
         // Get all edit buttons
         const editButtons = document.querySelectorAll('.edit-task-btn');
-        
-        // Get the task_id input field
+
+        // Get the task_id input fields
         const taskIdInput = document.getElementById('task_id');
-        
+        const deleteTaskIdInput = document.getElementById('delete_task_id');
+
         // Get the status select field
         const statusSelect = document.getElementById('status');
-        
+
         // Get the task title display element
         const taskTitleDisplay = document.getElementById('modal-task-title');
-        
+
         // Add click event to all edit buttons
         editButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -150,26 +161,27 @@ $tasks = $statement->fetchAll();
                 const taskId = button.getAttribute('data-id');
                 const currentStatus = button.getAttribute('data-status');
                 const taskTitle = button.getAttribute('data-title');
-                
-                // Set the task ID in the form
+
+                // Set the task ID in both forms
                 taskIdInput.value = taskId;
-                
+                deleteTaskIdInput.value = taskId;
+
                 // Set the current status in the dropdown
                 statusSelect.value = currentStatus;
-                
+
                 // Display the task title in the modal
                 taskTitleDisplay.textContent = taskTitle;
-                
+
                 // Display the modal
                 modal.style.display = 'block';
             });
         });
-        
+
         // Close the modal when clicking on <span> (x)
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
         });
-        
+
         // Close the modal when clicking anywhere outside of it
         window.addEventListener('click', (event) => {
             if (event.target == modal) {
@@ -177,6 +189,7 @@ $tasks = $statement->fetchAll();
             }
         });
     </script>
+
 </body>
 
 </html>
