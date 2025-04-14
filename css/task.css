@@ -1,3 +1,7 @@
+.container{
+    padding: 20px;
+}
+
 .kanban{
     display: flex;
     justify-content: space-around;
@@ -97,3 +101,24 @@
     background-color: #45a049;
 }
 
+.filter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #d4d6d4;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.filter-btn, .addtask{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin: 0 5px;
+    text-decoration: none; 
+}

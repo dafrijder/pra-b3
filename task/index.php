@@ -14,15 +14,36 @@
 </head>
 <?php
 require_once '../backend/conn.php';
+
+// Get all tasks
 $query = "SELECT * FROM kanban";
 $statement = $conn->prepare($query);
 $statement->execute();
 $tasks = $statement->fetchAll();
+
+// Get unique departments
+$query2 = "SELECT DISTINCT department FROM users WHERE department IS NOT NULL AND department != ''";
+$statement2 = $conn->prepare($query2);
+$statement2->execute();
+$departments = $statement2->fetchAll(PDO::FETCH_COLUMN);
+
+// Handle department filter
+$filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
 ?>
 
 <body>
 
     <div class="container">
+        <a href="./addtask.php" class="addtask">maak een taak aan</a>
+        <div class="filter">
+            <a href="index.php" class="filter-btn <?php echo !$filteredDepartment ? 'active' : ''; ?>">Alle afdelingen</a>
+            <?php foreach ($departments as $department) : ?>
+                <a href="index.php?department=<?php echo urlencode($department); ?>" 
+                   class="filter-btn <?php echo $filteredDepartment === $department ? 'active' : ''; ?>">
+                    <?php echo htmlspecialchars($department); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
         <div class="kanban">
             <div class="backlog">
                 <div class="colum-header">
@@ -30,7 +51,12 @@ $tasks = $statement->fetchAll();
                 </div>
                 <ul class="task-list">
                     <?php foreach ($tasks as $task) : ?>
-                        <?php if ($task['status'] == 'backlog') : ?>
+                        <?php 
+                        // Skip if filtered by department and doesn't match
+                        if ($filteredDepartment && $task['department'] !== $filteredDepartment) continue;
+                        
+                        if ($task['status'] == 'backlog') : 
+                        ?>
                             <li class="task-item">
                                 <div class="task-info">
                                     <h3><?php echo $task['title']; ?></h3>
@@ -54,7 +80,12 @@ $tasks = $statement->fetchAll();
                 </div>
                 <ul class="task-list">
                     <?php foreach ($tasks as $task) : ?>
-                        <?php if ($task['status'] == 'doing') : ?>
+                        <?php 
+                        // Skip if filtered by department and doesn't match
+                        if ($filteredDepartment && $task['department'] !== $filteredDepartment) continue;
+                        
+                        if ($task['status'] == 'doing') : 
+                        ?>
                             <li class="task-item">
                                 <div class="task-info">
                                     <h3><?php echo $task['title']; ?></h3>
@@ -78,7 +109,12 @@ $tasks = $statement->fetchAll();
                 </div>
                 <ul class="task-list">
                     <?php foreach ($tasks as $task) : ?>
-                        <?php if ($task['status'] == 'done') : ?>
+                        <?php 
+                        // Skip if filtered by department and doesn't match
+                        if ($filteredDepartment && $task['department'] !== $filteredDepartment) continue;
+                        
+                        if ($task['status'] == 'done') : 
+                        ?>
                             <li class="task-item">
                                 <div class="task-info">
                                     <h3><?php echo $task['title']; ?></h3>
@@ -99,7 +135,7 @@ $tasks = $statement->fetchAll();
         </div>
     </div>
 
-    <!-- In the modal section, update the delete form to correctly pass the task ID -->
+    <!-- Modal section remains unchanged -->
     <div class="model" id="taskModal">
         <div class="model-content">
             <span class="close">&times;</span>
@@ -132,7 +168,6 @@ $tasks = $statement->fetchAll();
             </form>
         </div>
     </div>
-
 
     <script>
         // Get the modal
