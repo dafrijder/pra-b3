@@ -224,6 +224,7 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
             }
         });
     </script>
+    <?php include '../templates/footer.php'; ?>
 
 </body>
 
