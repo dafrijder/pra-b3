@@ -42,4 +42,29 @@ elseif ($action == 'updatestatus')
     header('Location: ' . $base_url . '/task/index.php');
     exit;
 }
+elseif ($action == 'delete')
+{
+    $task_id = $_POST['task_id'];
+    
+    // Verify the task exists before deleting
+    $checkQuery = "SELECT id FROM kanban WHERE id = :task_id";
+    $checkStmt = $conn->prepare($checkQuery);
+    $checkStmt->execute([":task_id" => $task_id]);
+    
+    if ($checkStmt->rowCount() > 0) {
+        // Task exists, proceed with deletion
+        $deleteQuery = "DELETE FROM kanban WHERE id = :task_id";
+        $deleteStmt = $conn->prepare($deleteQuery);
+        $deleteStmt->execute([":task_id" => $task_id]);
+        
+        // Set a success message in session if needed
+        $_SESSION['message'] = "Task successfully deleted.";
+    } else {
+        // Task doesn't exist
+        $_SESSION['error'] = "Task not found.";
+    }
+    
+    header('Location: ' . $base_url . '/task/index.php');
+    exit;
+}
 ?>
