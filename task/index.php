@@ -16,7 +16,7 @@
 require_once '../backend/conn.php';
 
 // Get all tasks
-$query = "SELECT * FROM kanban DESEC deadline";
+$query = "SELECT * FROM kanban ORDER BY deadline ASC";
 $statement = $conn->prepare($query);
 $statement->execute();
 $tasks = $statement->fetchAll();
@@ -26,6 +26,12 @@ $query2 = "SELECT DISTINCT department FROM users WHERE department IS NOT NULL AN
 $statement2 = $conn->prepare($query2);
 $statement2->execute();
 $departments = $statement2->fetchAll(PDO::FETCH_COLUMN);
+
+//select all users
+$query3 = "SELECT * FROM users";
+$statement3 = $conn->prepare($query3);
+$statement3->execute();
+$users = $statement3->fetchAll();
 
 // Handle department filter
 $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
@@ -37,6 +43,7 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
         <a href="./addtask.php" class="addtask">maak een taak aan</a>
         <div class="filter">
             <a href="index.php" class="filter-btn <?php echo !$filteredDepartment ? 'active' : ''; ?>">Alle afdelingen</a>
+            <!-- Loop through departments and create filter buttons -->
             <?php foreach ($departments as $department) : ?>
                 <a href="index.php?department=<?php echo urlencode($department); ?>" 
                    class="filter-btn <?php echo $filteredDepartment === $department ? 'active' : ''; ?>">
@@ -64,11 +71,18 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
+                                    <p>gebruiker: <?php echo $task['user']?></p>
                                     <button class="edit-task-btn"
                                         data-id="<?php echo $task['id']; ?>"
                                         data-status="<?php echo $task['status']; ?>"
-                                        data-title="<?php echo $task['title']; ?>">wijzigen
+                                        data-title="<?php echo $task['title']; ?>">Wijzig status
                                     </button>
+                                    <form action="../backend/task-controller.php" method="post">
+                                        <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
+                                        <input type="hidden" name="status" value="<?php echo $task['status']; ?>">
+                                        <input type="hidden" name="action" value="done">
+                                        <button type="submit" class="done-task-btn">Done</button>
+                                    </form>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -94,10 +108,18 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
+                                    <p>gebruiker: <?php echo $task['user']?></p>
                                     <button class="edit-task-btn"
                                         data-id="<?php echo $task['id']; ?>"
                                         data-status="<?php echo $task['status']; ?>"
-                                        data-title="<?php echo $task['title']; ?>">wijzigen</button>
+                                        data-title="<?php echo $task['title']; ?>">Wijzig status
+                                    </button>
+                                    <form action="../backend/task-controller.php" method="post">
+                                        <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
+                                        <input type="hidden" name="status" value="<?php echo $task['status']; ?>">
+                                        <input type="hidden" name="action" value="done">
+                                        <button type="submit" class="done-task-btn">Done</button>
+                                    </form>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -123,6 +145,7 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
                                     <p>Deadline: <?php echo $task['deadline']; ?></p>
                                     <p>Start datum: <?php echo $task['date']; ?></p>
                                     <p>Afdeling: <?php echo $task['department']; ?></p>
+                                    <p>gebruiker: <?php echo $task['user']?></p>
                                     <button class="edit-task-btn"
                                         data-id="<?php echo $task['id']; ?>"
                                         data-status="<?php echo $task['status']; ?>"
@@ -147,6 +170,26 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
             <form action="../backend/task-controller.php" method="post">
                 <input type="hidden" name="action" value="updatestatus">
                 <input type="hidden" name="task_id" id="task_id">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="title" value="<?php echo $task['title']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description"><?php echo $task['description']; ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Deadline:</label>
+                    <input type="date" name="deadline" id="deadline" value="<?php echo $task['deadline']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="user">user:</label>
+                    <select name="user" id="user">
+                        <?php foreach ($users as $user) : ?>
+                            <option value="<?php echo $user['username']; ?>"><?php echo $user['username']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="status">Status:</label>
                     <select name="status" id="status">

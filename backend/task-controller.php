@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['user'])) {
     header("Location: " . $base_url . "/login.php");
     exit;
-}
+}   
 require_once 'conn.php';
 $action = $_POST['action'];
 
@@ -30,13 +30,21 @@ if ($action == 'addtask')
 elseif ($action == 'updatestatus')
 {
     $task_id = $_POST['task_id'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $user = $_POST['user'];
+    $deadline = $_POST['deadline'];
     $status = $_POST['status'];
     
-    $query = "UPDATE kanban SET status = :status WHERE id = :task_id";
+    $query = "UPDATE kanban SET title = :title, description = :description, user = :user, deadline = :deadline, status = :status WHERE id = :task_id";
     $stmt = $conn->prepare($query);
     $stmt->execute([
-        ":status" => $status,
-        ":task_id" => $task_id
+        ":task_id" => $task_id,
+        ":title" => $title,
+        ":description" => $description,
+        ":user" => $user,
+        ":deadline" => $deadline,
+        ":status" => $status
     ]);
     
     header('Location: ' . $base_url . '/task/index.php');
@@ -64,6 +72,16 @@ elseif ($action == 'delete')
         $_SESSION['error'] = "Task not found.";
     }
     
+    header('Location: ' . $base_url . '/task/index.php');
+    exit;
+}
+elseif ($action == 'done'){
+    $task_id = $_POST['task_id'];
+    $query = "UPDATE kanban SET status = 'done' WHERE id = :task_id";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([
+        ":task_id" => $task_id,
+    ]);
     header('Location: ' . $base_url . '/task/index.php');
     exit;
 }

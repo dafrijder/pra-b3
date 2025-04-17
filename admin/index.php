@@ -3,14 +3,14 @@
 
 <head>
     <?php 
-    require_once '../head.php';
-    require_once '../templates/header.php';
-
     session_start();
     if (!isset($_SESSION['user'])) {
         header("Location: " . $base_url . "/login.php");
         exit;
     }
+    require_once '../head.php';
+    require_once '../templates/header.php';
+
     ?>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -33,6 +33,8 @@
                 <th>Gebruikersnaam</th>
                 <th>Functie</th>
                 <th>Afdeling</th>
+                <th>acties</th>
+                <th></th>
             </tr>
             <?php foreach ($users as $user): ?>
                 <tr>
