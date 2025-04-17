@@ -16,7 +16,7 @@
 require_once '../backend/conn.php';
 
 // Get all tasks
-$query = "SELECT * FROM kanban";
+$query = "SELECT * FROM kanban DESEC deadline";
 $statement = $conn->prepare($query);
 $statement->execute();
 $tasks = $statement->fetchAll();
@@ -67,7 +67,8 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
                                     <button class="edit-task-btn"
                                         data-id="<?php echo $task['id']; ?>"
                                         data-status="<?php echo $task['status']; ?>"
-                                        data-title="<?php echo $task['title']; ?>">Wijzig status</button>
+                                        data-title="<?php echo $task['title']; ?>">wijzigen
+                                    </button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -96,7 +97,7 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
                                     <button class="edit-task-btn"
                                         data-id="<?php echo $task['id']; ?>"
                                         data-status="<?php echo $task['status']; ?>"
-                                        data-title="<?php echo $task['title']; ?>">Wijzig status</button>
+                                        data-title="<?php echo $task['title']; ?>">wijzigen</button>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -125,7 +126,7 @@ $filteredDepartment = isset($_GET['department']) ? $_GET['department'] : null;
                                     <button class="edit-task-btn"
                                         data-id="<?php echo $task['id']; ?>"
                                         data-status="<?php echo $task['status']; ?>"
-                                        data-title="<?php echo $task['title']; ?>">Wijzig status</button>
+                                        data-title="<?php echo $task['title']; ?>">wijzigen</button>
                                 </div>
                             </li>
                         <?php endif; ?>
